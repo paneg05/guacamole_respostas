@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Guacamole respostas</title>
+</head>
+<body>
+    
+    <h1>perfil de usuário</h1>
+
+    <% if(nome){  %>
+        <h3>nome: <%= nome %></h3>
+    <% } else{ %>
+         <h3>nome: indefinido</h3> 
+    <% } %>
+
+    <% if(lang){ %>
+        <h3>linguagem favorita: <%= lang %></h3>
+    <% } else { %>
+        <h3>linguagem favorita: linguagem não cadastrada</h3>
+    <% } %>
+
+    <% produtos.forEach((produto)=>{ %>
+        <H3><%= produto.nome %>: </H3> 
+        <h5><%= produto.preco %></h5>
+        <hr>
+    <% }) %>
+
+    <img src="/img/ab.webp">
+    
+
+</body>
+</html>
