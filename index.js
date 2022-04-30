@@ -2,7 +2,17 @@ const express = require('express')
 const server = express()
 const port = 8088
 const bodyParser = require('body-parser')
+const connection = require('./database/database')
+const perguntaModel = require('./database/Pergunta')
+const pergunta = require('./database/Pergunta')
 
+
+//configurando banco de dados
+connection.authenticate().then(()=>{
+    console.log(`\nconexão feita com banco de dados !\n`)
+}).catch((err)=>{
+    console.log(`\nerro ao se conectar ao banco de dados ${err}\n`)
+})
 
 //configurando express
     server.use(express.text())
@@ -33,9 +43,17 @@ const bodyParser = require('body-parser')
     })
 
     server.post(`/salvarPergunta`, (req,res)=>{
+        
         let titulo = req.body.titulo
         let descricao = req.body.descricao
-        res.send(`formulário recebido! <br> titulo: ${titulo} descricao: ${descricao}`)
+
+        pergunta.create({
+            titulo:titulo,
+            descricao:descricao
+        }).then(()=>{
+            res.redirect('/')
+        })
+        
     })
 
 
